@@ -29,6 +29,16 @@ class CourseClass:
         txt_charges = Entry(self.root,textvariable=self.var_charges,  font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=150, y=140, width=200)
         self.txt_description = Text(self.root,  font=("goudy old style", 15, "bold"), bg="lightyellow")
         self.txt_description.place(x=150, y=180, width=500, height=100)
+        
+        #=======Buttons=======
+        self.btn_add = Button(self.root, text="Add", font=("goudy old style", 15, "bold"), bg="#2196f3", fg="white", cursor="hand2")
+        self.btn_add.place(x=150, y=300, width=110, height=40)
+        self.btn_update = Button(self.root, text="Update", font=("goudy old style", 15, "bold"), bg="#4caf50", fg="white", cursor="hand2")
+        self.btn_update.place(x=270, y=300, width=110, height=40)
+        self.btn_delete = Button(self.root, text="Delete", font=("goudy old style", 15, "bold"), bg="#f44336", fg="white", cursor="hand2")
+        self.btn_delete.place(x=390, y=300, width=110, height=40)
+        self.btn_clear = Button(self.root, text="Clear", font=("goudy old style", 15, "bold"), bg="#607d8b", fg="white", cursor="hand2")
+        self.btn_clear.place(x=510, y=300, width=110, height=40)
                 
         
 if __name__ == "__main__":
