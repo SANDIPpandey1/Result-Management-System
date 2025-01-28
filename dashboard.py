@@ -10,6 +10,8 @@ class RMS:
         #=======Icon=======
         self.logo_dash = ImageTk.PhotoImage(file="images/logo_p.png")
         
+        #======shreesha Messgge
+        
         
         #=======Title=======
         title = Label(self.root, text="Result Management System",padx=10,compound =LEFT, image= self.logo_dash, font=("goudy old style", 20, "bold"), bg="#033054", fg="white").place(x=0, y=0, relwidth=1, height=50)
