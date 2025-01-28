@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk # pip install pillow
+from tkinter import messagebox, ttk
 class CourseClass:
     def __init__(self, root):
         self.root = root
@@ -39,6 +40,44 @@ class CourseClass:
         self.btn_delete.place(x=390, y=300, width=110, height=40)
         self.btn_clear = Button(self.root, text="Clear", font=("goudy old style", 15, "bold"), bg="#607d8b", fg="white", cursor="hand2")
         self.btn_clear.place(x=510, y=300, width=110, height=40)
+        
+        #=======Search Panel=======
+        self.var_search = StringVar()
+        lbl_search_courseName = Label(self.root, text="Course Name", font=("goudy old style", 15, "bold"), bg="white").place(x=720, y=60)
+        txt_search_courseName = Entry(self.root, textvariable=self.var_search, font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=870, y=60, width=180)
+        btn_search = Button(self.root, text="Search", font=("goudy old style", 15, "bold"), bg="#03a9f4", fg="white", cursor="hand2").place(x=1070, y=60, width=120, height=28)
+        
+        #=======Content=======
+        self.C_Frame = Frame(self.root, bd=2, relief=RIDGE)
+        self.C_Frame.place(x=720, y=100, width=460, height=340)
+        
+        scrolly = Scrollbar(self.C_Frame, orient=VERTICAL)
+        scrollx = Scrollbar(self.C_Frame, orient=HORIZONTAL)
+        
+        
+        
+        self.CourseTable = ttk.Treeview(self.C_Frame, columns=("cid", "name", "duration", "charges", "description"), yscrollcommand=scrolly.set, xscrollcommand=scrollx.set)
+        scrollx.pack(side=BOTTOM, fill=X)
+        scrolly.pack(side=RIGHT, fill=Y)
+        scrollx.config(command=self.CourseTable.xview)
+        scrolly.config(command=self.CourseTable.yview)
+        
+        
+        self.CourseTable.heading('cid', text='Course ID')
+        self.CourseTable.heading('name', text='Name')
+        self.CourseTable.heading('duration', text='Duration')
+        self.CourseTable.heading('charges', text='Charges')
+        self.CourseTable.heading('description', text='Description')
+        self.CourseTable["show"] = 'headings'
+        
+        self.CourseTable.column('cid', width=100)
+        self.CourseTable.column('name', width=100)
+        self.CourseTable.column('duration', width=100)
+        self.CourseTable.column('charges', width=100)
+        self.CourseTable.column('description', width=150)
+        
+        self.CourseTable.pack(fill=BOTH, expand=1)
+        
                 
         
 if __name__ == "__main__":
