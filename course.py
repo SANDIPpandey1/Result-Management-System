@@ -13,7 +13,7 @@ class CourseClass:
         #=======Title=======
         title = Label(self.root, text="Manage Course", font=("goudy old style", 20, "bold"), bg="#033054", fg="white").place(x=10, y=15, width=1180, height=35)
         #=======Variables=======
-        self.var_course_name = StringVar()
+        self.var_course = StringVar()
         self.var_duration = StringVar()
         self.var_charges = StringVar()
         #=======Widgets=======
@@ -24,7 +24,7 @@ class CourseClass:
         
         #=======Entry=======
         
-        self.txt_courseName = Entry(self.root, textvariable=self.var_course_name, font=("goudy old style", 15, "bold"), bg="lightyellow")
+        self.txt_courseName = Entry(self.root, textvariable=self.var_course, font=("goudy old style", 15, "bold"), bg="lightyellow")
         self.txt_courseName.place(x=150, y=60, width=200)
         
         txt_duration = Entry(self.root, textvariable=self.var_duration,  font=("goudy old style", 15, "bold"), bg="lightyellow").place(x=150, y=100, width=200)
@@ -89,7 +89,7 @@ class CourseClass:
     #clear
     def clear(self):
         self.show()
-        self.var_course_name.set("")
+        self.var_course.set("")
         self.var_duration.set("")
         self.var_search.set("")
         self.var_charges.set("")
@@ -100,17 +100,17 @@ class CourseClass:
         con=sqlite3.connect(database="RMS.db")
         cur=con.cursor()
         try:
-            if self.var_course_name.get()=="" or self.var_duration.get()=="" or self.var_charges.get()=="":
+            if self.var_course.get()=="" or self.var_duration.get()=="" or self.var_charges.get()=="":
                 messagebox.showerror("Error", "Some Fields are Empty", parent=self.root)
             else:
-                cur.execute("Select * from course where name=?",(self.var_course_name.get(),))
+                cur.execute("Select * from course where name=?",(self.var_course.get(),))
                 row=cur.fetchone()
                 if row==None:
                     messagebox.showerror("Error", "Select Course from List", parent=self.root)
                 else:
                     op=messagebox.askyesno("Confirm", "Do you really want to delete?", parent=self.root)
                     if op==True:
-                        cur.execute("DELETE FROM course WHERE name=?", (self.var_course_name.get(),))
+                        cur.execute("DELETE FROM course WHERE name=?", (self.var_course.get(),))
                         con.commit()
                         messagebox.showinfo("Success", "Course Deleted Successfully", parent=self.root)
                         self.clear()
@@ -125,7 +125,7 @@ class CourseClass:
         r=self.CourseTable.focus()
         content=self.CourseTable.item(r)
         row=content['values']
-        self.var_course_name.set(row[1])
+        self.var_course.set(row[1])
         self.var_duration.set(row[2])
         self.var_charges.set(row[3])
         self.txt_description.delete('1.0', END)
@@ -136,16 +136,16 @@ class CourseClass:
         con=sqlite3.connect(database="RMS.db")
         cur=con.cursor()
         try:
-            if self.var_course_name.get()=="" or self.var_duration.get()=="" or self.var_charges.get()=="":
+            if self.var_course.get()=="" or self.var_duration.get()=="" or self.var_charges.get()=="":
                 messagebox.showerror("Error", "Some Fields are Empty", parent=self.root)
             else:
-                cur.execute("Select * from course where name=?",(self.var_course_name.get(),))
+                cur.execute("Select * from course where name=?",(self.var_course.get(),))
                 row=cur.fetchone()
                 if row!=None:
                     messagebox.showerror("Error", "Course Name Already Exists", parent=self.root)
                 else:
                     cur.execute("INSERT INTO course (name, duration, charges, description) values(?,?,?,?)", (
-                        self.var_course_name.get(),
+                        self.var_course.get(),
                         self.var_duration.get(),
                         self.var_charges.get(),
                         self.txt_description.get('1.0', END)
@@ -160,7 +160,7 @@ class CourseClass:
         con=sqlite3.connect(database="RMS.db")
         cur=con.cursor()
         try:
-            if self.var_course_name.get()=="" or self.var_duration.get()=="" or self.var_charges.get()=="":
+            if self.var_course.get()=="" or self.var_duration.get()=="" or self.var_charges.get()=="":
                 messagebox.showerror("Error", "Some Fields are Empty", parent=self.root)
             else:
                 cur.execute("Select * from course where name=?",(self.var_course_name.get(),))
@@ -173,7 +173,7 @@ class CourseClass:
                         self.var_duration.get(),
                         self.var_charges.get(),
                         self.txt_description.get('1.0', END),
-                        self.var_course_name.get(),
+                        self.var_course.get(),
                     ))
                     con.commit()
                     messagebox.showinfo("Success", "Course Updated Successfully", parent=self.root)
