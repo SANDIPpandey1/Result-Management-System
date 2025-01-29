@@ -165,6 +165,8 @@ class studentClass:
         self.var_city.set(""),
         self.txt_address.delete('1.0', END)
         self.txt_address.insert(END, "")
+        self.txt_roll.config(state='normal')
+        
         
     
     def delete(self):

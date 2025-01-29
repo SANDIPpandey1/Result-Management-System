@@ -26,8 +26,7 @@ class RMS:
         btn_student = Button(M_Frame, text="Student", font=("goudy old style", 15, "bold"), bg="#0b5377", fg="white", cursor="hand2",command=self.add_student).place(x=240, y=5, width=200, height=40)
         btn_result = Button(M_Frame, text="Result", font=("goudy old style", 15, "bold"), bg="#0b5377", fg="white", cursor="hand2",command=self.add_result).place(x=460, y=5, width=200, height=40)
         btn_view = Button(M_Frame, text="View Result", font=("goudy old style", 15, "bold"), bg="#0b5377", fg="white", cursor="hand2").place(x=680, y=5, width=200, height=40)
-        btn_logout = Button(M_Frame, text="Logout", font=("goudy old style", 15, "bold"), bg="#0b5377", fg="white", cursor="hand2").place(x=900, y=5, width=200, height=40)
-        btn_exit = Button(M_Frame, text="Exit", font=("goudy old style", 15, "bold"), bg="#0b5377", fg="white", cursor="hand2").place(x=1140, y=5, width=200, height=40)
+        
         
         #=======Content=======
         self.bg_img = Image.open("images/bg.png")
